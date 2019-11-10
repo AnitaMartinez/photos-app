@@ -1,10 +1,10 @@
 import React from 'react';
-import PhotosApp from './PhotosApp';
+import PhotosAppConnected from './PhotosAppConnected';
 
 function App() {
   return (
     <div className="App">
-      <PhotosApp/>
+      <PhotosAppConnected/>
     </div>
   );
 }
