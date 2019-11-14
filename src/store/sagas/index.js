@@ -1,7 +1,7 @@
 import { call,put, takeLatest } from 'redux-saga/effects'
 import { Api } from '../../api'
 
-function* getPhotos(action) {
+function* getPhotos() {
     const photos = yield call(Api.getPhotos)
     if(photos) {
         yield put({ type: 'SET_PHOTOS', photos })

@@ -1,8 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './CardsList.css';
 import { Card } from '../index'
-
-// TODO: proptypes
 
 export const CardsList = ({photos}) => {
 
@@ -15,4 +14,8 @@ export const CardsList = ({photos}) => {
             }
         </div>
     )
+}
+
+CardsList.propTypes = {
+    photos: PropTypes.arrayOf(PropTypes.object).isRequired
 }

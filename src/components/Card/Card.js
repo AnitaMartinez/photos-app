@@ -1,10 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Card.css';
 
-// TODO: proptypes
-
 export const Card = ({photo}) => {
-
     return (
         <div className="Card">
           <p>{photo.title}</p> 
@@ -12,4 +10,12 @@ export const Card = ({photo}) => {
           <img src={`${photo.thumbnailUrl}`} alt={`${photo.title}`}></img>
         </div>
     )
+}
+
+Card.propTypes = {
+  photo: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    thumbnailUrl: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired
 }

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { getPhotos } from './store/actions'
 import { CardsList } from './components'
@@ -19,11 +20,16 @@ const PhotosApp = ({photos, getPhotos}) => {
   );
 }
 
-const mapStateToProps = (state, ownProps) => ({
+PhotosApp.propTypes = {
+  photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  getPhotos: PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => ({
   photos: state.photos.photos,
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   getPhotos: () => { dispatch(getPhotos()) }
 })
 
@@ -31,3 +37,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PhotosApp)
+
