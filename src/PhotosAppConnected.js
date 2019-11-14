@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getPhotos } from './store/actions'
-import { CardsList } from './components'
+import { getPhotos, sortPhotos } from './store/actions'
+import { CardsList, SortButton } from './components'
 
-const PhotosApp = ({photos, getPhotos}) => {
+const PhotosApp = ({photos, getPhotos, sortPhotos}) => {
 
   useEffect((getPhotos), [])
+
+  const handleSort = orderType => {sortPhotos(orderType)}
 
   return (
     <div>
@@ -14,6 +16,7 @@ const PhotosApp = ({photos, getPhotos}) => {
         <h1>Photos App</h1>
       </header>
       <main>
+        <SortButton onClick={handleSort}/>
         <CardsList photos={photos}/>
       </main>
     </div>
@@ -22,7 +25,8 @@ const PhotosApp = ({photos, getPhotos}) => {
 
 PhotosApp.propTypes = {
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  getPhotos: PropTypes.func.isRequired
+  getPhotos: PropTypes.func.isRequired,
+  sortPhotos: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -30,7 +34,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getPhotos: () => { dispatch(getPhotos()) }
+  getPhotos: () => { dispatch(getPhotos()) },
+  sortPhotos: orderType => { dispatch(sortPhotos(orderType)) }
 })
 
 export default connect(

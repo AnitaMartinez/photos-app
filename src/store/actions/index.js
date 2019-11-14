@@ -6,6 +6,11 @@ export const setPhotos = photos => ({
     photos
 })
 
+export const sortPhotos = ({isNextOrderAscending}) => ({
+    type: 'SORT_PHOTOS',
+    isNextOrderAscending
+})
+
 // ASYNCHRONOUS 
 
 export const getPhotos = () => ({

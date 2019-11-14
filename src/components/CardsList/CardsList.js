@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './CardsList.css';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './CardsList.css'
 import { Card } from '../index'
 
 export const CardsList = ({photos}) => {
@@ -9,7 +9,7 @@ export const CardsList = ({photos}) => {
         <div className="CardsList">
             {
                 photos.map(photo => (
-                    <Card photo={photo} key={photo.id} />
+                    <Card photo={photo} key={photo.title} />
                 ))
             }
         </div>
