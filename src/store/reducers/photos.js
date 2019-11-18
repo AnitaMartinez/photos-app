@@ -1,6 +1,11 @@
 
 const initialState = {
-    photos: []
+    photos: [],
+    pagination: {
+        currentPage: 1,
+        itemsPerPage: 4,
+        pages: null
+    }
 }
 
 const tasks = (state = initialState, action) => {
@@ -8,7 +13,12 @@ const tasks = (state = initialState, action) => {
         case 'SET_PHOTOS': 
             return {
                 ...state,
-                photos: action.photos
+                photos: action.photos,
+                pagination: {
+                    ...state.pagination, 
+                    currentPage: action.pagination.page, 
+                    pages: action.pagination.pages
+                }
             } 
         case 'SORT_PHOTOS': 
             const sortedPhotos = state.photos.slice().sort((a, b) => {

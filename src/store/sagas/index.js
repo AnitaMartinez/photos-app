@@ -1,14 +1,37 @@
-import { call,put, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest, select } from 'redux-saga/effects'
 import { Api } from '../../api'
 
-function* getPhotos() {
-    const photos = yield call(Api.getPhotos)
-    if(photos) {
-        yield put({ type: 'SET_PHOTOS', photos })
+function* getPhotos({ pagination }) {
+    const { currentPage, itemsPerPage } = yield select(state => state.photos.pagination)
+    const nextPage = getNextPage(pagination, currentPage)
+    const response = yield call(Api.getPhotos, { page: nextPage, itemsPerPage })
+    if(response) {
+        const { photos , totalItems } = response
+        const pages = Math.ceil(totalItems / itemsPerPage)
+        yield put({ 
+            type: 'SET_PHOTOS', 
+            photos, 
+            pagination: {
+                page: nextPage,
+                pages
+            }
+    })
     } else {
-        console.log('error', photos)
+        console.log('error', response)
     }
 }
+
+const getNextPage = (pagination, currentPage) => {
+    if(pagination && pagination.next) {
+        return currentPage + 1
+    }
+    if(pagination && pagination.previous) {
+        return currentPage - 1
+    }
+    const firstPage = 1
+    return firstPage
+}
+
 
 function* mySaga() {
     yield takeLatest('GET_PHOTOS', getPhotos);

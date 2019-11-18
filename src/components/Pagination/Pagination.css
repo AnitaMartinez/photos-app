@@ -1,0 +1,8 @@
+.Pagination {
+    display: flex;
+    margin-top: 20px;
+}
+
+.Pagination span {
+    margin: 0 20px;
+}

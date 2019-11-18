@@ -1,9 +1,10 @@
 
 // SYNCHRONOUS 
 
-export const setPhotos = photos => ({
+export const setPhotos = (photos, pagination) => ({
     type: 'SET_PHOTOS',
-    photos
+    photos,
+    pagination
 })
 
 export const sortPhotos = ({isNextOrderAscending}) => ({
@@ -13,7 +14,9 @@ export const sortPhotos = ({isNextOrderAscending}) => ({
 
 // ASYNCHRONOUS 
 
-export const getPhotos = () => ({
+export const getPhotos = pagination => ({
     type: 'GET_PHOTOS',
+    pagination
 })
+
 

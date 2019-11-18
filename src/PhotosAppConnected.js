@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getPhotos, sortPhotos } from './store/actions'
-import { CardsList, SortButton } from './components'
+import { CardsList, SortButton, Pagination } from './components'
 
-const PhotosApp = ({photos, getPhotos, sortPhotos}) => {
+const PhotosApp = ({photos, getPhotos, sortPhotos, currentPage, pages }) => {
 
   useEffect((getPhotos), [])
 
@@ -18,6 +18,11 @@ const PhotosApp = ({photos, getPhotos, sortPhotos}) => {
       <main>
         <SortButton onClick={handleSort}/>
         <CardsList photos={photos}/>
+        <Pagination
+          onChangePage={getPhotos}
+          currentPage={currentPage}
+          pages={pages}
+        />
       </main>
     </div>
   );
@@ -26,16 +31,23 @@ const PhotosApp = ({photos, getPhotos, sortPhotos}) => {
 PhotosApp.propTypes = {
   photos: PropTypes.arrayOf(PropTypes.object).isRequired,
   getPhotos: PropTypes.func.isRequired,
-  sortPhotos: PropTypes.func.isRequired
+  sortPhotos: PropTypes.func.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  pages: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.oneOf([null])
+  ])
 }
 
 const mapStateToProps = (state) => ({
   photos: state.photos.photos,
+  currentPage: state.photos.pagination.currentPage,
+  pages: state.photos.pagination.pages,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getPhotos: () => { dispatch(getPhotos()) },
-  sortPhotos: orderType => { dispatch(sortPhotos(orderType)) }
+  getPhotos: pagination => { dispatch(getPhotos(pagination)) },
+  sortPhotos: orderType => { dispatch(sortPhotos(orderType)) },
 })
 
 export default connect(
