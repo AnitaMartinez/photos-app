@@ -1,0 +1,34 @@
+@import '../../theme/breakpoints';
+
+
+.Card {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    @media all and (max-width: $mq-sm) {
+        width: 150px
+    }
+    @media all and (max-width: $mq-xxs) {
+        width: 130px
+    }
+
+    .title:first-letter {
+        text-transform: capitalize;
+    }
+
+    .image {
+        border-radius: 5%;
+        @media all and (max-width: $mq-sm) {
+            width: 120px;
+            height: auto;
+        }
+        @media all and (max-width: $mq-xxs) {
+            width: 100px;
+        }
+    }
+   
+
+}

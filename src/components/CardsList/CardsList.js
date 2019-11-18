@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './CardsList.css'
+import './CardsList.scss'
 import { Card } from '../index'
 
 export const CardsList = ({photos, isLoading}) => {
-
     return (
         <div className="CardsList">
             {

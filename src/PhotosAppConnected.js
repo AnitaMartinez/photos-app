@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getPhotos, sortPhotos } from './store/actions'
 import { CardsList, SortButton, Pagination } from './components'
+import './PhotosApp.scss'
 
 const PhotosApp = ({photos, getPhotos, sortPhotos, currentPage, pages, isLoading }) => {
 
@@ -11,8 +12,8 @@ const PhotosApp = ({photos, getPhotos, sortPhotos, currentPage, pages, isLoading
   const handleSort = orderType => {sortPhotos(orderType)}
 
   return (
-    <div>
-      <header>
+    <div className="main-container">
+      <header className="header">
         <h1>Photos App</h1>
       </header>
       <main>

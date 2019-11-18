@@ -1,0 +1,11 @@
+@import './theme/breakpoints';
+
+.main-container {
+    padding: 50px;
+    max-width: 1200px;
+    margin: auto;
+
+    @media all and (max-width: $mq-sm) {
+        padding: 20px;
+    }
+}

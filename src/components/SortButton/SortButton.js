@@ -1,6 +1,6 @@
 import React, {useState}  from 'react'
 import PropTypes from 'prop-types'
-import './SortButton.css'
+import './SortButton.scss'
 import ArrowDown from '../../assets/icons/arrow-down.svg'
 import ArrowUp from '../../assets/icons/arrow-up.svg'
 

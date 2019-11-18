@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './Pagination.css'
+import './Pagination.scss'
 
 export const Pagination = ({onChangePage, currentPage, pages}) => {
     return (
