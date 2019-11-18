@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { getPhotos, sortPhotos } from './store/actions'
 import { CardsList, SortButton, Pagination } from './components'
 
-const PhotosApp = ({photos, getPhotos, sortPhotos, currentPage, pages }) => {
+const PhotosApp = ({photos, getPhotos, sortPhotos, currentPage, pages, isLoading }) => {
 
   useEffect((getPhotos), [])
 
@@ -17,7 +17,7 @@ const PhotosApp = ({photos, getPhotos, sortPhotos, currentPage, pages }) => {
       </header>
       <main>
         <SortButton onClick={handleSort}/>
-        <CardsList photos={photos}/>
+        <CardsList photos={photos} isLoading={isLoading}/>
         <Pagination
           onChangePage={getPhotos}
           currentPage={currentPage}
@@ -36,13 +36,15 @@ PhotosApp.propTypes = {
   pages: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.oneOf([null])
-  ])
+  ]),
+  isLoading: PropTypes.bool
 }
 
 const mapStateToProps = (state) => ({
   photos: state.photos.photos,
   currentPage: state.photos.pagination.currentPage,
   pages: state.photos.pagination.pages,
+  isLoading: state.flags.isLoading
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import './CardsList.css'
 import { Card } from '../index'
 
-export const CardsList = ({photos}) => {
+export const CardsList = ({photos, isLoading}) => {
 
     return (
         <div className="CardsList">
             {
                 photos.map(photo => (
-                    <Card photo={photo} key={photo.title} />
+                    <Card photo={photo} key={photo.title} isLoading={isLoading} />
                 ))
             }
         </div>
@@ -17,5 +17,6 @@ export const CardsList = ({photos}) => {
 }
 
 CardsList.propTypes = {
-    photos: PropTypes.arrayOf(PropTypes.object).isRequired
+    photos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    isLoading: PropTypes.bool
 }

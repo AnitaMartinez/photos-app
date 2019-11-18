@@ -2,6 +2,7 @@ import { call, put, takeLatest, select } from 'redux-saga/effects'
 import { Api } from '../../api'
 
 function* getPhotos({ pagination }) {
+    yield put({type: 'SHOW_LOADING'})
     const { currentPage, itemsPerPage } = yield select(state => state.photos.pagination)
     const nextPage = getNextPage(pagination, currentPage)
     const response = yield call(Api.getPhotos, { page: nextPage, itemsPerPage })
@@ -14,11 +15,11 @@ function* getPhotos({ pagination }) {
             pagination: {
                 page: nextPage,
                 pages
-            }
-    })
+        }})
     } else {
         console.log('error', response)
     }
+    yield put({type: 'HIDE_LOADING'})
 }
 
 const getNextPage = (pagination, currentPage) => {

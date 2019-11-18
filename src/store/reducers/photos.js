@@ -8,7 +8,7 @@ const initialState = {
     }
 }
 
-const tasks = (state = initialState, action) => {
+const photos = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_PHOTOS': 
             return {
@@ -48,4 +48,4 @@ const tasks = (state = initialState, action) => {
     }
 }
 
-export default tasks
+export default photos
