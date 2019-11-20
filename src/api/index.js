@@ -15,9 +15,5 @@ export const Api = {
 }
 
 const getTotalItemsFromHeaders = response => {
-  for(const entry of response.headers.entries()){
-    if(entry.includes('x-total-count') && entry.length === 2){
-      return entry[1]
-    }
-  }
+  return response.headers.get('x-total-count')
 }
